@@ -12,7 +12,6 @@ export declare class UserController {
         id_user: number;
         name: string;
         email: string;
-        password: string;
     }[]>;
     searchOne(id_user: number): Promise<UserInterface>;
 }

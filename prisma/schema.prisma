@@ -15,8 +15,8 @@ datasource db {
 
 model Users {
   id_user   Int         @id @unique @default(autoincrement())
-  name      String
-  email     String
+  name      String      @unique
+  email     String      @unique
   password  String
   Questions Questions[]
   Awsner    Awsner[]
@@ -24,7 +24,7 @@ model Users {
 
 model Subjects {
   id_subject Int         @id @unique @default(autoincrement())
-  name       String
+  name       String      @unique
   Questions  Questions[]
 }
 
@@ -40,9 +40,9 @@ model Questions {
 
 model Awsner {
   id_awsner   Int       @id @unique @default(autoincrement())
-  awsmer_main String
-  user_id     Int
+  awsner_main String
+  user_id     Int       @unique
   USER        Users     @relation(fields: [user_id], references: [id_user])
-  question_id Int
+  question_id Int       @unique
   QUESTION    Questions @relation(fields: [question_id], references: [id_question])
 }

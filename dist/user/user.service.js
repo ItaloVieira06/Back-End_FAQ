@@ -36,10 +36,21 @@ let UserService = class UserService {
         const { where } = params;
         return await this.prisma.users.findUnique({
             where,
+            select: {
+                id_user: true,
+                name: true,
+                email: true,
+            },
         });
     }
     async searchAll() {
-        return await this.prisma.users.findMany();
+        return await this.prisma.users.findMany({
+            select: {
+                id_user: true,
+                name: true,
+                email: true,
+            },
+        });
     }
 };
 exports.UserService = UserService;

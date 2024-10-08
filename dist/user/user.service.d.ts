@@ -21,6 +21,5 @@ export declare class UserService {
         id_user: number;
         name: string;
         email: string;
-        password: string;
     }[]>;
 }
