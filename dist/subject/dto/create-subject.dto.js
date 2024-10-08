@@ -18,5 +18,5 @@ __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateSubjectDto.prototype, "subject_main", void 0);
+], CreateSubjectDto.prototype, "name", void 0);
 //# sourceMappingURL=create-subject.dto.js.map

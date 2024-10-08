@@ -39,7 +39,7 @@ let AwsnerService = class AwsnerService {
         });
     }
     async searchAll() {
-        return await this.prisma.users.findMany();
+        return await this.prisma.awsner.findMany();
     }
 };
 exports.AwsnerService = AwsnerService;

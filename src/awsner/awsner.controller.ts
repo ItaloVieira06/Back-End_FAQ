@@ -10,20 +10,20 @@ import {
 } from '@nestjs/common';
 import { AwsnerService } from './awsner.service';
 import { CreateAwsnerDto } from './dto/create-awsner.dto';
-//import { UpdateAwsnerDto } from './dto/update-awsner.dto';
+import { UpdateAwsnerDto } from './dto/update-awsner.dto';
 import { Awsner } from '@prisma/client';
 
 @Controller('awsner')
 export class AwsnerController {
   constructor(private readonly awsnerService: AwsnerService) {}
-  @Post('registrer')
+  @Post('register')
   async create(@Body() params: CreateAwsnerDto): Promise<Awsner> {
     return await this.awsnerService.create(params);
   }
   @Patch('update/:id')
   async update(
     @Param('id', ParseIntPipe) id_awsner: number,
-    @Body() data: any,
+    @Body() data: UpdateAwsnerDto,
   ): Promise<Awsner> {
     return await this.awsnerService.update({
       where: { id_awsner },
@@ -34,7 +34,7 @@ export class AwsnerController {
   async delete(@Param('id', ParseIntPipe) id_awsner: number): Promise<Awsner> {
     return await this.awsnerService.delete({ where: { id_awsner } });
   }
-  @Get('get/all')
+  @Get('search/all')
   async findAll() {
     return await this.awsnerService.searchAll();
   }

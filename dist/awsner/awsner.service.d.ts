@@ -1,43 +1,26 @@
+import { CreateAwsnerDto } from './dto/create-awsner.dto';
+import { UpdateAwsnerDto } from './dto/update-awsner.dto';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/database/prisma.service';
+import { Awsner } from '@prisma/client';
 export declare class AwsnerService {
     private prisma;
     constructor(prisma: PrismaService);
-    create(params: any): Promise<{
-        id_awsner: number;
-        awsmer_main: string;
-        user_id: number;
-        question_id: number;
-    }>;
+    create(params: CreateAwsnerDto): Promise<Awsner>;
     update(params: {
         where: Prisma.AwsnerWhereUniqueInput;
-        data: any;
-    }): Promise<{
-        id_awsner: number;
-        awsmer_main: string;
-        user_id: number;
-        question_id: number;
-    }>;
+        data: UpdateAwsnerDto;
+    }): Promise<Awsner>;
     delete(params: {
         where: Prisma.AwsnerWhereUniqueInput;
-    }): Promise<{
-        id_awsner: number;
-        awsmer_main: string;
-        user_id: number;
-        question_id: number;
-    }>;
+    }): Promise<Awsner>;
     searchOne(params: {
         where: Prisma.AwsnerWhereUniqueInput;
-    }): Promise<{
-        id_awsner: number;
+    }): Promise<Awsner>;
+    searchAll(): Promise<{
         awsmer_main: string;
         user_id: number;
         question_id: number;
-    }>;
-    searchAll(): Promise<{
-        name: string;
-        id_user: number;
-        email: string;
-        password: string;
+        id_awsner: number;
     }[]>;
 }

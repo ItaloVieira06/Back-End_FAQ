@@ -10,25 +10,22 @@ import {
 } from '@nestjs/common';
 import { QuestionService } from './question.service';
 import { CreateQuestionDto } from './dto/create-question.dto';
-//import { UpdateQuestionDto } from './dto/update-question.dto';
+import { UpdateQuestionDto } from './dto/update-question.dto';
 import { Questions } from '@prisma/client';
 
 @Controller('question')
 export class QuestionController {
   constructor(private readonly questionsService: QuestionService) {}
-  @Post('registrer')
+  @Post('register')
   async create(@Body() params: CreateQuestionDto): Promise<Questions> {
     return await this.questionsService.create(params);
   }
   @Patch('update/:id')
   async update(
     @Param('id', ParseIntPipe) id_question: number,
-    @Body() data: any,
+    @Body() updateQuestionDto: UpdateQuestionDto,
   ): Promise<Questions> {
-    return await this.questionsService.update({
-      where: { id_question },
-      data: data,
-    });
+    return await this.questionsService.update(id_question, updateQuestionDto);
   }
   @Delete('delete/:id')
   async delete(
@@ -36,7 +33,7 @@ export class QuestionController {
   ): Promise<Questions> {
     return await this.questionsService.delete({ where: { id_question } });
   }
-  @Get('get/all')
+  @Get('search/all')
   async findAll() {
     return await this.questionsService.searchAll();
   }

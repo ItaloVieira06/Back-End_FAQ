@@ -17,13 +17,13 @@ exports.CreateAwsnerDto = CreateAwsnerDto;
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateAwsnerDto.prototype, "awsner_main", void 0);
+], CreateAwsnerDto.prototype, "awsmer_main", void 0);
 __decorate([
     (0, class_validator_1.IsInt)(),
-    __metadata("design:type", Object)
-], CreateAwsnerDto.prototype, "awsner_id", void 0);
+    __metadata("design:type", Number)
+], CreateAwsnerDto.prototype, "user_id", void 0);
 __decorate([
     (0, class_validator_1.IsInt)(),
-    __metadata("design:type", Object)
+    __metadata("design:type", Number)
 ], CreateAwsnerDto.prototype, "question_id", void 0);
 //# sourceMappingURL=create-awsner.dto.js.map

@@ -4,7 +4,7 @@ export class CreateQuestionDto {
   @IsString()
   question_main: string;
   @IsInt()
-  id_user: BigInteger;
+  user_id: number;
   @IsInt()
-  subject_question: BigInteger;
+  subject_id: number;
 }

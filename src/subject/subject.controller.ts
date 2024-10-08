@@ -10,20 +10,21 @@ import {
 } from '@nestjs/common';
 import { SubjectService } from './subject.service';
 import { CreateSubjectDto } from './dto/create-subject.dto';
+import { UpdateAwsnerDto } from 'src/awsner/dto/update-awsner.dto';
 import { Subjects } from '@prisma/client';
 
 @Controller('subject')
 export class SubjectController {
   constructor(private readonly subjectService: SubjectService) {}
 
-  @Post('registrer')
+  @Post('register')
   async create(@Body() params: CreateSubjectDto): Promise<Subjects> {
     return await this.subjectService.create(params);
   }
   @Patch('update/:id')
   async update(
     @Param('id', ParseIntPipe) id_subject: number,
-    @Body() data: any,
+    @Body() data: UpdateAwsnerDto,
   ): Promise<Subjects> {
     return await this.subjectService.update({
       where: { id_subject },
@@ -36,7 +37,7 @@ export class SubjectController {
   ): Promise<Subjects> {
     return await this.subjectService.delete({ where: { id_subject } });
   }
-  @Get('get/all')
+  @Get('search/all')
   async findAll() {
     return await this.subjectService.searchAll();
   }

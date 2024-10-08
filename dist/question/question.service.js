@@ -19,11 +19,10 @@ let QuestionService = class QuestionService {
     async create(params) {
         return await this.prisma.questions.create({ data: params });
     }
-    async update(params) {
-        const { where, data } = params;
+    async update(id_question, updateQuestionDto) {
         return await this.prisma.questions.update({
-            where,
-            data,
+            where: { id_question },
+            data: updateQuestionDto,
         });
     }
     async delete(params) {

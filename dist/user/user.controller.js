@@ -16,6 +16,7 @@ exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
 const user_service_1 = require("./user.service");
 const create_user_dto_1 = require("./dto/create-user.dto");
+const update_user_dto_1 = require("./dto/update-user.dto");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -32,7 +33,7 @@ let UserController = class UserController {
     async delete(id_user) {
         return await this.userService.delete({ where: { id_user } });
     }
-    async findAll() {
+    async searchAll() {
         return await this.userService.searchAll();
     }
     async searchOne(id_user) {
@@ -41,7 +42,7 @@ let UserController = class UserController {
 };
 exports.UserController = UserController;
 __decorate([
-    (0, common_1.Post)('registrer'),
+    (0, common_1.Post)('register'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_user_dto_1.CreateUserDTO]),
@@ -52,7 +53,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, Object]),
+    __metadata("design:paramtypes", [Number, update_user_dto_1.UpdateUserDto]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "update", null);
 __decorate([
@@ -63,11 +64,11 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "delete", null);
 __decorate([
-    (0, common_1.Get)('get/all'),
+    (0, common_1.Get)('search/all'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], UserController.prototype, "findAll", null);
+], UserController.prototype, "searchAll", null);
 __decorate([
     (0, common_1.Get)('search/:id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),

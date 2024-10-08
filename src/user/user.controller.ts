@@ -11,34 +11,40 @@ import {
 import { UserService } from './user.service';
 import { Users } from '@prisma/client';
 import { CreateUserDTO } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { UserInterface } from './interface/user-interface.interface';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
-  @Post('registrer')
-  async create(@Body() params: CreateUserDTO): Promise<Users> {
+  @Post('register')
+  async create(@Body() params: CreateUserDTO): Promise<UserInterface> {
     return await this.userService.create(params);
   }
   @Patch('update/:id')
   async update(
     @Param('id', ParseIntPipe) id_user: number,
-    @Body() data: any,
-  ): Promise<Users> {
+    @Body() data: UpdateUserDto,
+  ): Promise<UserInterface> {
     return await this.userService.update({
       where: { id_user },
       data: data,
     });
   }
   @Delete('delete/:id')
-  async delete(@Param('id', ParseIntPipe) id_user: number): Promise<Users> {
+  async delete(
+    @Param('id', ParseIntPipe) id_user: number,
+  ): Promise<UserInterface> {
     return await this.userService.delete({ where: { id_user } });
   }
-  @Get('get/all')
-  async findAll() {
+  @Get('search/all')
+  async searchAll() {
     return await this.userService.searchAll();
   }
   @Get('search/:id')
-  async searchOne(@Param('id', ParseIntPipe) id_user: number): Promise<Users> {
+  async searchOne(
+    @Param('id', ParseIntPipe) id_user: number,
+  ): Promise<UserInterface> {
     return await this.userService.searchOne({ where: { id_user } });
   }
 }

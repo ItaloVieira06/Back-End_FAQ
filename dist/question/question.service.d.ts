@@ -1,44 +1,23 @@
 import { CreateQuestionDto } from './dto/create-question.dto';
+import { UpdateQuestionDto } from './dto/update-question.dto';
 import { PrismaService } from 'src/database/prisma.service';
 import { Prisma } from '@prisma/client';
+import { Questions } from '@prisma/client';
 export declare class QuestionService {
     private prisma;
     constructor(prisma: PrismaService);
-    create(params: any): Promise<{
-        id_question: number;
-        question_main: string;
-        subject_id: number;
-        user_id: number;
-    }>;
-    update(params: {
-        where: Prisma.QuestionsWhereUniqueInput;
-        data: CreateQuestionDto;
-    }): Promise<{
-        id_question: number;
-        question_main: string;
-        subject_id: number;
-        user_id: number;
-    }>;
+    create(params: CreateQuestionDto): Promise<Questions>;
+    update(id_question: number, updateQuestionDto: UpdateQuestionDto): Promise<Questions>;
     delete(params: {
         where: Prisma.QuestionsWhereUniqueInput;
-    }): Promise<{
-        id_question: number;
-        question_main: string;
-        subject_id: number;
-        user_id: number;
-    }>;
+    }): Promise<Questions>;
     searchOne(params: {
         where: Prisma.QuestionsWhereUniqueInput;
-    }): Promise<{
-        id_question: number;
-        question_main: string;
-        subject_id: number;
-        user_id: number;
-    }>;
+    }): Promise<Questions>;
     searchAll(): Promise<{
-        id_question: number;
+        user_id: number;
         question_main: string;
         subject_id: number;
-        user_id: number;
+        id_question: number;
     }[]>;
 }

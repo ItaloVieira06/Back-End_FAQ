@@ -20,10 +20,10 @@ __decorate([
 ], CreateQuestionDto.prototype, "question_main", void 0);
 __decorate([
     (0, class_validator_1.IsInt)(),
-    __metadata("design:type", Object)
-], CreateQuestionDto.prototype, "id_user", void 0);
+    __metadata("design:type", Number)
+], CreateQuestionDto.prototype, "user_id", void 0);
 __decorate([
     (0, class_validator_1.IsInt)(),
-    __metadata("design:type", Object)
-], CreateQuestionDto.prototype, "subject_question", void 0);
+    __metadata("design:type", Number)
+], CreateQuestionDto.prototype, "subject_id", void 0);
 //# sourceMappingURL=create-question.dto.js.map

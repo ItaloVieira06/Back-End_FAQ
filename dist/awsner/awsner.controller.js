@@ -16,6 +16,7 @@ exports.AwsnerController = void 0;
 const common_1 = require("@nestjs/common");
 const awsner_service_1 = require("./awsner.service");
 const create_awsner_dto_1 = require("./dto/create-awsner.dto");
+const update_awsner_dto_1 = require("./dto/update-awsner.dto");
 let AwsnerController = class AwsnerController {
     constructor(awsnerService) {
         this.awsnerService = awsnerService;
@@ -41,7 +42,7 @@ let AwsnerController = class AwsnerController {
 };
 exports.AwsnerController = AwsnerController;
 __decorate([
-    (0, common_1.Post)('registrer'),
+    (0, common_1.Post)('register'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_awsner_dto_1.CreateAwsnerDto]),
@@ -52,7 +53,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, Object]),
+    __metadata("design:paramtypes", [Number, update_awsner_dto_1.UpdateAwsnerDto]),
     __metadata("design:returntype", Promise)
 ], AwsnerController.prototype, "update", null);
 __decorate([
@@ -63,7 +64,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AwsnerController.prototype, "delete", null);
 __decorate([
-    (0, common_1.Get)('get/all'),
+    (0, common_1.Get)('search/all'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)

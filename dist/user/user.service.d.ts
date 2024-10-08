@@ -1,44 +1,26 @@
 import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/database/prisma.service';
 import { CreateUserDTO } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { UserInterface } from './interface/user-interface.interface';
 export declare class UserService {
     private prisma;
     constructor(prisma: PrismaService);
-    create(params: CreateUserDTO): Promise<{
-        name: string;
-        email: string;
-        password: string;
-        id_user: number;
-    }>;
+    create(params: CreateUserDTO): Promise<UserInterface>;
     update(params: {
         where: Prisma.UsersWhereUniqueInput;
-        data: any;
-    }): Promise<{
-        name: string;
-        email: string;
-        password: string;
-        id_user: number;
-    }>;
+        data: UpdateUserDto;
+    }): Promise<UserInterface>;
     delete(params: {
         where: Prisma.UsersWhereUniqueInput;
-    }): Promise<{
-        name: string;
-        email: string;
-        password: string;
-        id_user: number;
-    }>;
+    }): Promise<UserInterface>;
     searchOne(params: {
         where: Prisma.UsersWhereUniqueInput;
-    }): Promise<{
-        name: string;
-        email: string;
-        password: string;
-        id_user: number;
-    }>;
+    }): Promise<UserInterface>;
     searchAll(): Promise<{
+        id_user: number;
         name: string;
         email: string;
         password: string;
-        id_user: number;
     }[]>;
 }

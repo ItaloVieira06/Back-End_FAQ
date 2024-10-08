@@ -16,6 +16,7 @@ exports.QuestionController = void 0;
 const common_1 = require("@nestjs/common");
 const question_service_1 = require("./question.service");
 const create_question_dto_1 = require("./dto/create-question.dto");
+const update_question_dto_1 = require("./dto/update-question.dto");
 let QuestionController = class QuestionController {
     constructor(questionsService) {
         this.questionsService = questionsService;
@@ -23,11 +24,8 @@ let QuestionController = class QuestionController {
     async create(params) {
         return await this.questionsService.create(params);
     }
-    async update(id_question, data) {
-        return await this.questionsService.update({
-            where: { id_question },
-            data: data,
-        });
+    async update(id_question, updateQuestionDto) {
+        return await this.questionsService.update(id_question, updateQuestionDto);
     }
     async delete(id_question) {
         return await this.questionsService.delete({ where: { id_question } });
@@ -41,7 +39,7 @@ let QuestionController = class QuestionController {
 };
 exports.QuestionController = QuestionController;
 __decorate([
-    (0, common_1.Post)('registrer'),
+    (0, common_1.Post)('register'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_question_dto_1.CreateQuestionDto]),
@@ -52,7 +50,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, Object]),
+    __metadata("design:paramtypes", [Number, update_question_dto_1.UpdateQuestionDto]),
     __metadata("design:returntype", Promise)
 ], QuestionController.prototype, "update", null);
 __decorate([
@@ -63,7 +61,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], QuestionController.prototype, "delete", null);
 __decorate([
-    (0, common_1.Get)('get/all'),
+    (0, common_1.Get)('search/all'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)

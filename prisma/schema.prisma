@@ -39,11 +39,10 @@ model Questions {
 }
 
 model Awsner {
-  id_awsner     Int       @id @unique @default(autoincrement())
-  awsmer_main   String
-  user_id       Int
-  USER          Users     @relation(fields: [user_id], references: [id_user])
-  question_id   Int
-  QUESTION      Questions @relation(fields: [question_id], references: [id_question])
+  id_awsner   Int       @id @unique @default(autoincrement())
+  awsmer_main String
+  user_id     Int
+  USER        Users     @relation(fields: [user_id], references: [id_user])
+  question_id Int
+  QUESTION    Questions @relation(fields: [question_id], references: [id_question])
 }
-
