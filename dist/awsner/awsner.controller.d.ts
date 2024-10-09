@@ -9,7 +9,7 @@ export declare class AwsnerController {
     update(id_awsner: number, data: UpdateAwsnerDto): Promise<Awsner>;
     delete(id_awsner: number): Promise<Awsner>;
     findAll(): Promise<{
-        awsmer_main: string;
+        awsner_main: string;
         user_id: number;
         question_id: number;
         id_awsner: number;

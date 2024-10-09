@@ -18,7 +18,7 @@ export declare class AwsnerService {
         where: Prisma.AwsnerWhereUniqueInput;
     }): Promise<Awsner>;
     searchAll(): Promise<{
-        awsmer_main: string;
+        awsner_main: string;
         user_id: number;
         question_id: number;
         id_awsner: number;

@@ -12,11 +12,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../database/prisma.service");
+const bcrypt = require("bcrypt");
 let UserService = class UserService {
     constructor(prisma) {
         this.prisma = prisma;
     }
     async create(params) {
+        params.password = bcrypt.hashSync(params.password, 8);
         return await this.prisma.users.create({ data: params });
     }
     async update(params) {

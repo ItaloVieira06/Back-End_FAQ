@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Prisma, Users } from '@prisma/client';
 import { PrismaService } from 'src/database/prisma.service';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-//import { Users } from '@prisma/client';
 import { UserInterface } from './interface/user-interface.interface';
 import * as bcrypt from 'bcrypt';
 
@@ -61,5 +60,9 @@ export class UserService {
         email: true,
       },
     });
+  }
+
+  async findOne(username: string): Promise<User | undefined> {
+    return this.users.find(user => user.username === username);
   }
 }
