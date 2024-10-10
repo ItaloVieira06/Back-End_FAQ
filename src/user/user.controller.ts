@@ -9,22 +9,28 @@ import {
   Post,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-//import { Users } from '@prisma/client';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserInterface } from './interface/user-interface.interface';
+import { Role } from '../auth/role.enum';
+import { Roles } from 'src/auth/role.decorator';
+import { UseGuards } from '@nestjs/common';
+import { AuthGuard } from 'src/auth/auth.guard';
+import { RolesGuard } from 'src/auth/role.guard';
 
 @Controller('user')
 export class UserController {
-  //construtor de suporte
   constructor(private readonly userService: UserService) {}
-  //criação de usuário
+
   @Post('register')
+  @UseGuards(AuthGuard, RolesGuard)
   async create(@Body() params: CreateUserDTO): Promise<UserInterface> {
     return await this.userService.create(params);
   }
-  //atualização de usuário pelo id
+
   @Patch('update/:id')
+  @UseGuards(AuthGuard, RolesGuard)
+  @Roles(Role.Admin)
   async update(
     @Param('id', ParseIntPipe) id_user: number,
     @Body() data: UpdateUserDto,
@@ -34,20 +40,26 @@ export class UserController {
       data: data,
     });
   }
-  //deletação de usuário por id
+
   @Delete('delete/:id')
+  @UseGuards(AuthGuard)
+  @Roles(Role.Admin)
   async delete(
     @Param('id', ParseIntPipe) id_user: number,
   ): Promise<UserInterface> {
     return await this.userService.delete({ where: { id_user } });
   }
-  //pesquisa geral de usuários
+
   @Get('search/all')
+  @UseGuards(AuthGuard, RolesGuard)
+  @Roles(Role.Admin)
   async searchAll() {
     return await this.userService.searchAll();
   }
-  //pesquisa específica de usuário pelo id
+
   @Get('search/:id')
+  @UseGuards(AuthGuard, RolesGuard)
+  @Roles(Role.Admin)
   async searchOne(
     @Param('id', ParseIntPipe) id_user: number,
   ): Promise<UserInterface> {

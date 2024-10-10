@@ -9,10 +9,10 @@ export declare class QuestionController {
     update(id_question: number, updateQuestionDto: UpdateQuestionDto): Promise<Questions>;
     delete(id_question: number): Promise<Questions>;
     findAll(): Promise<{
-        user_id: number;
+        id_question: number;
         question_main: string;
         subject_id: number;
-        id_question: number;
+        user_id: number;
     }[]>;
     searchOne(id_question: number): Promise<Questions>;
 }

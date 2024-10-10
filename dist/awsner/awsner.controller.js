@@ -17,6 +17,11 @@ const common_1 = require("@nestjs/common");
 const awsner_service_1 = require("./awsner.service");
 const create_awsner_dto_1 = require("./dto/create-awsner.dto");
 const update_awsner_dto_1 = require("./dto/update-awsner.dto");
+const common_2 = require("@nestjs/common");
+const auth_guard_1 = require("../auth/auth.guard");
+const role_guard_1 = require("../auth/role.guard");
+const role_decorator_1 = require("../auth/role.decorator");
+const role_enum_1 = require("../auth/role.enum");
 let AwsnerController = class AwsnerController {
     constructor(awsnerService) {
         this.awsnerService = awsnerService;
@@ -43,6 +48,8 @@ let AwsnerController = class AwsnerController {
 exports.AwsnerController = AwsnerController;
 __decorate([
     (0, common_1.Post)('register'),
+    (0, common_2.UseGuards)(auth_guard_1.AuthGuard, role_guard_1.RolesGuard),
+    (0, role_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.User),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_awsner_dto_1.CreateAwsnerDto]),
@@ -50,6 +57,8 @@ __decorate([
 ], AwsnerController.prototype, "create", null);
 __decorate([
     (0, common_1.Patch)('update/:id'),
+    (0, common_2.UseGuards)(auth_guard_1.AuthGuard, role_guard_1.RolesGuard),
+    (0, role_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.User),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -58,6 +67,8 @@ __decorate([
 ], AwsnerController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)('delete/:id'),
+    (0, common_2.UseGuards)(auth_guard_1.AuthGuard, role_guard_1.RolesGuard),
+    (0, role_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.User),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -65,12 +76,16 @@ __decorate([
 ], AwsnerController.prototype, "delete", null);
 __decorate([
     (0, common_1.Get)('search/all'),
+    (0, common_2.UseGuards)(auth_guard_1.AuthGuard, role_guard_1.RolesGuard),
+    (0, role_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.User),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], AwsnerController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)('search/:id'),
+    (0, common_2.UseGuards)(auth_guard_1.AuthGuard, role_guard_1.RolesGuard),
+    (0, role_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.User),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),

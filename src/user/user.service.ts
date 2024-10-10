@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma, Users } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/database/prisma.service';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -10,14 +10,11 @@ import * as bcrypt from 'bcrypt';
 export class UserService {
   constructor(private prisma: PrismaService) {}
 
-  //função de criar usuário
   async create(params: CreateUserDTO): Promise<UserInterface> {
-    //encriptação
     params.password = bcrypt.hashSync(params.password, 8);
-    //criação de usuário
     return await this.prisma.users.create({ data: params });
   }
-  //função para adaptação
+
   async update(params: {
     where: Prisma.UsersWhereUniqueInput;
     data: UpdateUserDto;
@@ -28,7 +25,7 @@ export class UserService {
       data,
     });
   }
-  //função de deletação de usuário
+
   async delete(params: {
     where: Prisma.UsersWhereUniqueInput;
   }): Promise<UserInterface> {
@@ -37,7 +34,7 @@ export class UserService {
       where,
     });
   }
-  //função de pesquisa de usuário específico
+
   async searchOne(params: {
     where: Prisma.UsersWhereUniqueInput;
   }): Promise<UserInterface> {
@@ -51,7 +48,7 @@ export class UserService {
       },
     });
   }
-  //função de pesquisa de todos os usuário
+
   async searchAll() {
     return await this.prisma.users.findMany({
       select: {
