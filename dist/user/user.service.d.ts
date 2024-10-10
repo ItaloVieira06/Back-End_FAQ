@@ -18,8 +18,8 @@ export declare class UserService {
         where: Prisma.UsersWhereUniqueInput;
     }): Promise<UserInterface>;
     searchAll(): Promise<{
+        id_user: number;
         name: string;
         email: string;
-        id_user: number;
     }[]>;
 }

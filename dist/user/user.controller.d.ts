@@ -9,9 +9,9 @@ export declare class UserController {
     update(id_user: number, data: UpdateUserDto): Promise<UserInterface>;
     delete(id_user: number): Promise<UserInterface>;
     searchAll(): Promise<{
+        id_user: number;
         name: string;
         email: string;
-        id_user: number;
     }[]>;
     searchOne(id_user: number): Promise<UserInterface>;
 }

@@ -1,19 +1,28 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { UserService } from '../user/user.service';
-import { Users } from '@prisma/client';
-
+import { Prisma } from '@prisma/client';
+import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
+import { PrismaService } from 'src/database/prisma.service';
 @Injectable()
 export class AuthService {
-  constructor(private usersService: UserService) {}
+  constructor(
+    private jwtService: JwtService,
+    private prisma: PrismaService,
+  ) {}
 
-  async signIn(username: string, pass: string): Promise<Users> {
-    const user = await this.usersService.searchOne(username);
-    if (user?.password !== pass) {
-      throw new UnauthorizedException();
+  async signIn(
+    params: Prisma.UsersCreateInput,
+  ): Promise<{ access_token: string }> {
+    const user = await this.prisma.users.findUnique({
+      where: { email: params.email },
+    });
+    const matcher = await bcrypt.compare(params.password, user.password);
+    if (!matcher) {
+      throw new UnauthorizedException('Wrong Password!');
     }
-    const { password, ...result } = user;
-    // TODO: Generate a JWT and return it here
-    // instead of the user object
-    return result;
+    const payload = { sub: user.id_user };
+    return {
+      access_token: await this.jwtService.signAsync(payload),
+    };
   }
 }
