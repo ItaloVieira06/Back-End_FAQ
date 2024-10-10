@@ -5,6 +5,10 @@ export declare class AuthController {
     constructor(authService: AuthService);
     signIn(signInDto: Prisma.UsersCreateInput): Promise<{
         access_token: string;
+        refresh_token: string;
     }>;
     getProfile(req: any): any;
+    getRefresh(refreshToken: any): Promise<{
+        access_token: string;
+    }>;
 }

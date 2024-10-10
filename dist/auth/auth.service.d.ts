@@ -7,5 +7,9 @@ export declare class AuthService {
     constructor(jwtService: JwtService, prisma: PrismaService);
     signIn(params: Prisma.UsersCreateInput): Promise<{
         access_token: string;
+        refresh_token: string;
+    }>;
+    refreshToken(refreshToken: any): Promise<{
+        access_token: string;
     }>;
 }

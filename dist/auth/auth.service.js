@@ -28,9 +28,31 @@ let AuthService = class AuthService {
             throw new common_1.UnauthorizedException('Wrong Password!');
         }
         const payload = { sub: user.id_user };
+        const access_token = await this.jwtService.signAsync(payload);
+        const refresh_token = await this.jwtService.signAsync(payload, {
+            expiresIn: '7d',
+        });
         return {
-            access_token: await this.jwtService.signAsync(payload),
+            access_token: access_token,
+            refresh_token: refresh_token,
         };
+    }
+    async refreshToken(refreshToken) {
+        try {
+            const payload = this.jwtService.verify(refreshToken);
+            console.log(payload);
+            console.log(refreshToken);
+            const newAccessToken = this.jwtService.sign({
+                sub: payload.id_user,
+            });
+            console.log(newAccessToken);
+            return {
+                access_token: newAccessToken,
+            };
+        }
+        catch {
+            throw new common_1.UnauthorizedException('Token de Refresh Inválido!');
+        }
     }
 };
 exports.AuthService = AuthService;
