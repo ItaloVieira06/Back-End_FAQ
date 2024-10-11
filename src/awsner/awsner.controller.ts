@@ -23,15 +23,13 @@ export class AwsnerController {
   constructor(private readonly awsnerService: AwsnerService) {}
 
   @Post('register')
-  @UseGuards(AuthGuard, RolesGuard)
-  @Roles(Role.Admin, Role.User)
+  @UseGuards(AuthGuard)
   async create(@Body() params: CreateAwsnerDto): Promise<Awsner> {
     return await this.awsnerService.create(params);
   }
 
   @Patch('update/:id')
-  @UseGuards(AuthGuard, RolesGuard)
-  @Roles(Role.Admin, Role.User)
+  @UseGuards(AuthGuard)
   async update(
     @Param('id', ParseIntPipe) id_awsner: number,
     @Body() data: UpdateAwsnerDto,
@@ -44,21 +42,19 @@ export class AwsnerController {
 
   @Delete('delete/:id')
   @UseGuards(AuthGuard, RolesGuard)
-  @Roles(Role.Admin, Role.User)
+  @Roles(Role.Admin)
   async delete(@Param('id', ParseIntPipe) id_awsner: number): Promise<Awsner> {
     return await this.awsnerService.delete({ where: { id_awsner } });
   }
 
   @Get('search/all')
-  @UseGuards(AuthGuard, RolesGuard)
-  @Roles(Role.Admin, Role.User)
+  @UseGuards(AuthGuard)
   async findAll() {
     return await this.awsnerService.searchAll();
   }
 
   @Get('search/:id')
-  @UseGuards(AuthGuard, RolesGuard)
-  @Roles(Role.Admin, Role.User)
+  @UseGuards(AuthGuard)
   async searchOne(
     @Param('id', ParseIntPipe) id_awsner: number,
   ): Promise<Awsner> {
