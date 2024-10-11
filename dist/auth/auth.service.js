@@ -40,12 +40,9 @@ let AuthService = class AuthService {
     async refreshToken(refreshToken) {
         try {
             const payload = this.jwtService.verify(refreshToken);
-            console.log(payload);
-            console.log(refreshToken);
             const newAccessToken = this.jwtService.sign({
                 sub: payload.id_user,
             });
-            console.log(newAccessToken);
             return {
                 access_token: newAccessToken,
             };

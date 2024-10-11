@@ -23,7 +23,6 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post('register')
-  @UseGuards(AuthGuard, RolesGuard)
   async create(@Body() params: CreateUserDTO): Promise<UserInterface> {
     return await this.userService.create(params);
   }
