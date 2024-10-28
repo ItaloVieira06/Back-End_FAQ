@@ -45,8 +45,7 @@ let QuestionController = class QuestionController {
 exports.QuestionController = QuestionController;
 __decorate([
     (0, common_1.Post)('register'),
-    (0, role_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.User),
-    (0, common_2.UseGuards)(auth_guard_1.AuthGuard, role_guard_1.RolesGuard),
+    (0, common_2.UseGuards)(auth_guard_1.AuthGuard),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_question_dto_1.CreateQuestionDto]),
@@ -54,7 +53,7 @@ __decorate([
 ], QuestionController.prototype, "create", null);
 __decorate([
     (0, common_1.Patch)('update/:id'),
-    (0, role_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.User),
+    (0, role_decorator_1.Roles)(role_enum_1.Role.Admin),
     (0, common_2.UseGuards)(auth_guard_1.AuthGuard, role_guard_1.RolesGuard),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
@@ -64,7 +63,7 @@ __decorate([
 ], QuestionController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)('delete/:id'),
-    (0, role_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.User),
+    (0, role_decorator_1.Roles)(role_enum_1.Role.Admin),
     (0, common_2.UseGuards)(auth_guard_1.AuthGuard, role_guard_1.RolesGuard),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
@@ -73,16 +72,14 @@ __decorate([
 ], QuestionController.prototype, "delete", null);
 __decorate([
     (0, common_1.Get)('search/all'),
-    (0, role_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.User),
-    (0, common_2.UseGuards)(auth_guard_1.AuthGuard, role_guard_1.RolesGuard),
+    (0, common_2.UseGuards)(auth_guard_1.AuthGuard),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], QuestionController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)('search/:id'),
-    (0, common_2.UseGuards)(auth_guard_1.AuthGuard, role_guard_1.RolesGuard),
-    (0, role_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.User),
+    (0, common_2.UseGuards)(auth_guard_1.AuthGuard),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),

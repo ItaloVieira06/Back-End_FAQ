@@ -57,8 +57,7 @@ export class UserController {
   }
 
   @Get('search/:id')
-  @UseGuards(AuthGuard, RolesGuard)
-  @Roles(Role.Admin, Role.User)
+  @UseGuards(AuthGuard)
   async searchOne(
     @Param('id', ParseIntPipe) id_user: number,
   ): Promise<UserInterface> {

@@ -48,7 +48,6 @@ let UserController = class UserController {
 exports.UserController = UserController;
 __decorate([
     (0, common_1.Post)('register'),
-    (0, common_2.UseGuards)(auth_guard_1.AuthGuard, role_guard_1.RolesGuard),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_user_dto_1.CreateUserDTO]),
@@ -83,8 +82,7 @@ __decorate([
 ], UserController.prototype, "searchAll", null);
 __decorate([
     (0, common_1.Get)('search/:id'),
-    (0, common_2.UseGuards)(auth_guard_1.AuthGuard, role_guard_1.RolesGuard),
-    (0, role_decorator_1.Roles)(role_enum_1.Role.Admin),
+    (0, common_2.UseGuards)(auth_guard_1.AuthGuard),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
