@@ -17,11 +17,6 @@ const common_1 = require("@nestjs/common");
 const user_service_1 = require("./user.service");
 const create_user_dto_1 = require("./dto/create-user.dto");
 const update_user_dto_1 = require("./dto/update-user.dto");
-const role_enum_1 = require("../auth/role.enum");
-const role_decorator_1 = require("../auth/role.decorator");
-const common_2 = require("@nestjs/common");
-const auth_guard_1 = require("../auth/auth.guard");
-const role_guard_1 = require("../auth/role.guard");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -55,8 +50,6 @@ __decorate([
 ], UserController.prototype, "create", null);
 __decorate([
     (0, common_1.Patch)('update/:id'),
-    (0, common_2.UseGuards)(auth_guard_1.AuthGuard, role_guard_1.RolesGuard),
-    (0, role_decorator_1.Roles)(role_enum_1.Role.Admin),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -65,8 +58,6 @@ __decorate([
 ], UserController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)('delete/:id'),
-    (0, common_2.UseGuards)(auth_guard_1.AuthGuard),
-    (0, role_decorator_1.Roles)(role_enum_1.Role.Admin),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -74,15 +65,12 @@ __decorate([
 ], UserController.prototype, "delete", null);
 __decorate([
     (0, common_1.Get)('search/all'),
-    (0, common_2.UseGuards)(auth_guard_1.AuthGuard, role_guard_1.RolesGuard),
-    (0, role_decorator_1.Roles)(role_enum_1.Role.Admin),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "searchAll", null);
 __decorate([
     (0, common_1.Get)('search/:id'),
-    (0, common_2.UseGuards)(auth_guard_1.AuthGuard),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),

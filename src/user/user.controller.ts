@@ -28,8 +28,6 @@ export class UserController {
   }
 
   @Patch('update/:id')
-  @UseGuards(AuthGuard, RolesGuard)
-  @Roles(Role.Admin)
   async update(
     @Param('id', ParseIntPipe) id_user: number,
     @Body() data: UpdateUserDto,
@@ -41,8 +39,6 @@ export class UserController {
   }
 
   @Delete('delete/:id')
-  @UseGuards(AuthGuard)
-  @Roles(Role.Admin)
   async delete(
     @Param('id', ParseIntPipe) id_user: number,
   ): Promise<UserInterface> {
@@ -50,14 +46,11 @@ export class UserController {
   }
 
   @Get('search/all')
-  @UseGuards(AuthGuard, RolesGuard)
-  @Roles(Role.Admin)
   async searchAll() {
     return await this.userService.searchAll();
   }
 
   @Get('search/:id')
-  @UseGuards(AuthGuard)
   async searchOne(
     @Param('id', ParseIntPipe) id_user: number,
   ): Promise<UserInterface> {

@@ -22,15 +22,11 @@ export class SubjectController {
   constructor(private readonly subjectService: SubjectService) {}
 
   @Post('register')
-  @UseGuards(AuthGuard, RolesGuard)
-  @Roles(Role.Admin)
   async create(@Body() params: CreateSubjectDto): Promise<Subjects> {
     return await this.subjectService.create(params);
   }
 
   @Patch('update/:id')
-  @UseGuards(AuthGuard, RolesGuard)
-  @Roles(Role.Admin)
   async update(
     @Param('id', ParseIntPipe) id_subject: number,
     @Body() data: UpdateAwsnerDto,
@@ -42,8 +38,6 @@ export class SubjectController {
   }
 
   @Delete('delete/:id')
-  @UseGuards(AuthGuard, RolesGuard)
-  @Roles(Role.Admin)
   async delete(
     @Param('id', ParseIntPipe) id_subject: number,
   ): Promise<Subjects> {
@@ -51,15 +45,11 @@ export class SubjectController {
   }
 
   @Get('search/all')
-  @UseGuards(AuthGuard, RolesGuard)
-  @Roles(Role.Admin)
   async findAll() {
     return await this.subjectService.searchAll();
   }
 
   @Get('search/:id')
-  @UseGuards(AuthGuard, RolesGuard)
-  @Roles(Role.Admin)
   async searchOne(
     @Param('id', ParseIntPipe) id_subject: number,
   ): Promise<Subjects> {

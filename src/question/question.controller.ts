@@ -23,14 +23,11 @@ export class QuestionController {
   constructor(private readonly questionsService: QuestionService) {}
 
   @Post('register')
-  @UseGuards(AuthGuard)
   async create(@Body() params: CreateQuestionDto): Promise<Questions> {
     return await this.questionsService.create(params);
   }
 
   @Patch('update/:id')
-  @Roles(Role.Admin)
-  @UseGuards(AuthGuard, RolesGuard)
   async update(
     @Param('id', ParseIntPipe) id_question: number,
     @Body() updateQuestionDto: UpdateQuestionDto,
@@ -39,8 +36,6 @@ export class QuestionController {
   }
 
   @Delete('delete/:id')
-  @Roles(Role.Admin)
-  @UseGuards(AuthGuard, RolesGuard)
   async delete(
     @Param('id', ParseIntPipe) id_question: number,
   ): Promise<Questions> {
@@ -48,13 +43,11 @@ export class QuestionController {
   }
 
   @Get('search/all')
-  @UseGuards(AuthGuard)
   async findAll() {
     return await this.questionsService.searchAll();
   }
 
   @Get('search/:id')
-  @UseGuards(AuthGuard)
   async searchOne(
     @Param('id', ParseIntPipe) id_question: number,
   ): Promise<Questions> {

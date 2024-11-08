@@ -9,7 +9,7 @@ export declare class AuthService {
         access_token: string;
         refresh_token: string;
     }>;
-    refreshToken(refreshToken: any): Promise<{
+    refreshToken(refreshToken: string): Promise<{
         access_token: string;
     }>;
 }
